@@ -76,7 +76,9 @@
 <!--    </q-drawer>-->
 
     <q-page-container>
-      <Kettle v-bind:firebase-token="firebaseToken" v-bind:kettle-id="kettleId" v-bind:kettle-name="kettleName" v-bind:default-username="defaultUsername" v-bind:drinkers="drinkers"/>
+      <Kettle v-bind:firebase-token="firebaseToken" v-bind:kettle-id="kettleId" v-bind:kettle-name="kettleName"
+              v-bind:default-username="defaultUsername" v-bind:drinkers="drinkers"
+              v-on:clear-drinkers="clearDrinkers"/>
       <NewKettle v-on:update-kettle="updateKettle" />
       <KettleList v-bind:firebase-token="firebaseToken" v-bind:last-known-long="lastKnownLong" v-bind:last-known-lat="lastKnownLat" v-on:update-kettle="updateKettle"/>
     </q-page-container>
@@ -125,6 +127,10 @@ export default {
     addDrinker(data){
       console.log("adding drinker: ", data);
       this.drinkers.push({name: data.name, choice: data.choice});
+    },
+    clearDrinkers(){
+      console.log("clearing drinkers");
+      this.drinkers = [];
     }
   },
   created (){

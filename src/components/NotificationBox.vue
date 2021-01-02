@@ -55,16 +55,18 @@ export default {
           if (payload.data.type === "offer") {
             this.kettleId = payload.data.kettleId;
             this.kettleName = payload.data.kettleName;
-            console.log(this.currentMessage);
             console.log("Message received. ", payload);
           }
           // It feels a bit shit having the notification box handle stuff that doesnt get shown.
           // Might want to refactor, but also might want to show notifications on new drink-request.
-          else if (payload.data.type === "request") {
+          else if (payload.data.type === "drinkrequest") {
             this.$emit("add-drinker", payload.data)
           }
+          // else if (payload.data.type === "cleardrinkers") {
+          //   this.$emit("clear-drinkers")
+          // }
           else{
-            console.log("warning. got unexpected fcm message-type", payload.data.type);
+            console.log("warning. got unexpected fcm message-type", payload);
             return
           }
           this.notify = true;

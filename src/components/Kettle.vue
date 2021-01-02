@@ -66,7 +66,9 @@ name: "Kettle",
     readyOnClick(){
       // what else need do? block notifications for more drinks for one.
       // api call to set current-maker to none
-      postRequest(API_URL + `kettles/${this.kettleId}/finished/`, {})
+      postRequest(API_URL + `kettles/${this.kettleId}/finished/`, {}).then(() => {
+        this.$emit("clear-drinkers");
+      })
       this.inprogress = false;
     }
   }
